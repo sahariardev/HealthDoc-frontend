@@ -1,7 +1,39 @@
 <div class="gradient-color-01 h-100">
   <div style="opacity:0;">Start here</div>
   <div class="search-container">
-    Search Here
-  </div>
-</div>
+  <div class="container">
+  <h1>Health Doc</h1>
 
+  <form #searchInfo = "ngForm" (ngSubmit) = "onClickSubmit(searchInfo.value)">
+  <div class="form-group">
+  <label>Search By: </label>
+  <input type="radio" name="dissym" value="1" ngModel> Disease
+  <input type="radio" name="dissym" value="0" ngModel> Symptoms
+
+  <input type="text" class="form-control" ngModel id="name" name="disease" 
+  placeholder="Search by" required>
+  </div>
+  
+  <button type="submit" class="btn btn-success">Submit</button>
+<br/>
+<hr>
+  <label>Result:</label>
+  <div [innerHtml]="htmlVariable"></div>
+  <div class="container">
+      <ol>  
+        <li *ngFor="let d of data">
+      <label>Name : {{d._source.name}}</label><br/>
+      <div>Symptoms:
+        <ul>
+          <li *ngFor="let s of d._source.symptom">{{s}}</li>
+          <hr>
+        </ul>
+      </div>
+      </li>
+    </ol>
+  </div>
+
+  </form>
+  </div>
+  </div>
+  </div>
