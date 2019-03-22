@@ -4,14 +4,31 @@
   <div class="container">
   <h1>Health Doc</h1>
 
-  <form #searchInfo = "ngForm" (ngSubmit) = "onClickSubmit(searchInfo.value)">
+  <form #searchInfo = "ngForm" (ngSubmit) = "onClickSubmit(searchInfo.value)" autocomplete="off">
   <div class="form-group">
   <label>Search By: </label>
-  <input type="radio" name="dissym" value="1" ngModel> Disease
-  <input type="radio" name="dissym" value="0" ngModel> Symptoms
+  <div>
+  <tr *ngFor="let entry of entries">
+      <td>{{ entry.description }}</td>
+      <td>
+          <input type="radio" name="radiogroup" 
+              [checked]="entry.id === 0" 
+              [value]="entry.id" 
+              (change)="onSelectionChange(entry)">
+      </td>
+  </tr>
+  </div>
+  
 
-  <input type="text" class="form-control" ngModel id="name" name="disease" 
+  <input type="text" class="form-control"(keyup)="showSuggestions()" [(ngModel)]="disease" id="name" name="disease" 
   placeholder="Search by" required>
+  </div>
+  <div class="suggestion-container" *ngIf="showSuggestionBox">
+    <div class="suggestion" *ngFor="let s of suggestions" (click)="selectSuggestion(s._source.name)">
+      {{s._source.name}}
+    </div>
+
+
   </div>
   
   <button type="submit" class="btn btn-success">Submit</button>
