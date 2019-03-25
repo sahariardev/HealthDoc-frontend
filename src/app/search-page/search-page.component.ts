@@ -16,7 +16,7 @@ ngOnInit() {
 data = [];
 configUrl = "";
 onClickSubmit(data) {
-    this.htmlVariable ="";
+    //this.htmlVariable ="";
     console.log(data.dissym);
     var disname;
     if(data.dissym== 0){
@@ -35,16 +35,16 @@ onClickSubmit(data) {
             disname).subscribe(
         (val) => {
             console.log("POST call successful value returned in body", 
-            val.hits.hits.length);
-            this.data = val.hits.hits;
-            if(val.hits.hits.length>0){
+            val);
+            //this.data = val.hits.hits;
+            if(val){
                 console.log("POST call successful value returned in body", 
             val);
             console.log("POST call successful value returned in body", 
             val.hits.hits[0]);
             }
             else{
-                this.htmlVariable = "<span>No Data Found</span>";
+                //this.htmlVariable = "<span>No Data Found</span>";
             }
         },
         response => {
