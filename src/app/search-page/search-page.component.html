@@ -5,7 +5,7 @@
   <h1>Health Doc</h1>
 
   <form #searchInfo = "ngForm" (ngSubmit) = "onClickSubmit(searchInfo.value)" autocomplete="off">
-  <div class="form-group">
+  <div class="search-form_3">
   <label>Search By: </label>
   <div>
   <tr *ngFor="let entry of entries">
@@ -20,8 +20,9 @@
   </div>
   
 
-  <input type="text" class="form-control"(keyup)="showSuggestions()" [(ngModel)]="disease" id="name" name="disease" 
+  <input class="search_3" type="text" (keyup)="showSuggestions()" [(ngModel)]="disease" id="name" name="disease" 
   placeholder="Search by" required>
+  <button type="submit" class="submit_3">Submit</button>
   </div>
   <div class="suggestion-container" *ngIf="showSuggestionBox">
     <div class="suggestion" *ngFor="let s of suggestions" (click)="selectSuggestion(s._source.name)">
@@ -31,7 +32,7 @@
 
   </div>
   
-  <button type="submit" class="btn btn-success">Submit</button>
+  
 <br/>
 <hr>
   <label>Result:</label>
